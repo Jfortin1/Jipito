@@ -1,0 +1,2 @@
+# Jipito
+Personal R package
