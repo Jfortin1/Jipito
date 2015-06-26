@@ -1,0 +1,5 @@
+import(methods)
+import(matrixStats)
+
+export(darken)
+

@@ -1,0 +1,12 @@
+Package: Jipito
+Title: Awesome personal package
+Version: 0.99.0
+Authors@R: c(person("Jean-Philippe", "Fortin", role = c("cre", "aut"),
+                    email = "fortin946@gmail.com"))
+Depends: methods, matrixStats, R (>= 3.0.0)
+Imports: RColorBrewer
+Description: Awesome personal package
+Url: https://github.com/Jfortin1/Jipito
+VignetteBuilder: knitr
+License: Artistic-2.0
+
