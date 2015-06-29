@@ -1,5 +1,5 @@
 # Jipito
-Personal R package
+My personal R package
 
 ### Why
 I want to share pieces of code that I find really useful/cool
