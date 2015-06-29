@@ -1,73 +1,77 @@
-# Kolmogorov-Zurbenko filter (iterative moving average)
-kz <- function(x, k=1, iter=1, na.rm=TRUE, optimal=FALSE, tolerance=0.05){
+# Kolmogorov-Zurbenko filter (kative moving average)
+# w: width of the window
+# k: number of iterations
+kz <- function(x, w=3, k=1, na.rm=TRUE, optimal=FALSE, tolerance=0.05, verbose=TRUE){
 
     check.integer <- function(N){
         !grepl("[^[:digit:]]", format(N,  digits = 20, scientific = FALSE))
     }
-    if (!check.integer(k) | k<=0 | (k %% 2)==0){
-        stop("k must be a strictly positive odd integer")
+    if (!check.integer(w) | w<=0 | (w %% 2)==0){
+        stop("w must be a strictly positive odd integer")
     }
     stopifnot(is.numeric(x))
 
-    k <- (k-1)/2
-    .movingAverage <- function(x, k=1, na.rm=TRUE){
+    w <- (w-1)/2
+    .movingAverage <- function(x, w=1, na.rm=TRUE){
         n <- length(x)
         y <- rep(NA,n)
 
-        window.mean <- function(x, j, k, na.rm=na.rm){
-            if (k>=1){
-                return(mean(x[(j-(k+1)):(j+k)], na.rm=na.rm))
+        window.mean <- function(x, j, w, na.rm=na.rm){
+            if (w>=1){
+                return(mean(x[(j-(w+1)):(j+w)], na.rm=na.rm))
             } else {
                 return(x[j])
             }    
         }
 
-        for (i in (k+1):(n-k)){
-            y[i] <- window.mean(x,i,k, na.rm)
+        for (i in (w+1):(n-w)){
+            y[i] <- window.mean(x,i,w, na.rm)
         }
-        for (i in 1:k){
+        for (i in 1:w){
             y[i] <- window.mean(x,i,i-1, na.rm)
         }
-        for (i in (n-k+1):n){
+        for (i in (n-w+1):n){
             y[i] <- window.mean(x,i,n-i,na.rm)
         }
         y
     }
 
-    .iterativeMovingAverage <- function(x, k, iter=1, na.rm=TRUE){
-        for (i in 1:iter){
-            x <- .movingAverage(x, k=k, na.rm=na.rm)
+    .iterativeMovingAverage <- function(x, w, k=1, na.rm=TRUE){
+        for (i in 1:k){
+            x <- .movingAverage(x, w=w, na.rm=na.rm)
         } 
         x
     }
 
 
-    .optimalMovingAverage <- function(x, k, na.rm=TRUE){
+    .optimalMovingAverage <- function(x, w, na.rm=TRUE){
         continue <- TRUE
-        iter <- 0
+        k <- 0
         xs <- list()
         xs[[1]] <- x
         while (continue){
-            iter <- iter+1
-            xs[[iter+1]] <- .movingAverage(xs[[iter]], k=k, na.rm = na.rm)
-            diff <- sum((xs[[iter+1]]-xs[iter])^2)/sum(xs[[iter]]^2)
+            k <- k+1
+            xs[[k+1]] <- .movingAverage(xs[[k]], w=w, na.rm = na.rm)
+            diff <- sum((xs[[k+1]]-xs[[k]])^2)/sum(xs[[k]]^2)
             if (diff < tolerance){
                 continue  <- FALSE
             }
         }
-        cat(paste0("Optimal number of iterations: ", iter-1, "\n"))
-        return(xs[[iter]])
+        if (verbose){
+            cat(paste0("Optimal number of iterations: ", k-1, "\n"))
+        }
+        return(xs[[k]])
     }
 
 
 
     # Iterative part:
-    if (k >=1){
+    if (w >=1){
         
         if (!optimal){
-            x <- .iterativeMovingAverage(x, k=k, na.rm=na.rm, iter=iter)
+            x <- .iterativeMovingAverage(x, w=w, na.rm=na.rm, k=k)
         } else {
-            x <- .optimalMovingAverage(x, k=k, na.rm)
+            x <- .optimalMovingAverage(x, w=w, na.rm)
         }
         
     }
