@@ -2,7 +2,7 @@
 Personal R package
 
 ### Why
-Because I want to version control useful pieces of code that hopefully others will find useful.
+I want to share pieces of code that I find really useful/cool
 
 ### What
 
