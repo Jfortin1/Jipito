@@ -2,7 +2,7 @@
 My personal R package
 
 ### Why
-I want to share pieces of code that I find really useful/cool
+Because I want to share pieces of code that I find really useful/cool
 
 
 #### Kolmogorov-Zurbenko filter (Iterative moving average) : [kz.R](https://github.com/Jfortin1/Jipito/blob/master/R/kz.R)
