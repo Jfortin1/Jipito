@@ -13,7 +13,7 @@ I like this filter a lot and used it in my [recent paper](http://biorxiv.org/con
 ```{r}
 library(jipito)
 mybarplot(x)
-mybarplot(kz(x, w=3, optimal=TRUE)
+mybarplot(kz(x, w=3, optimal=TRUE))
 ```
 ![alt tag](https://raw.github.com/jfortin1/Jipito/master/figures/kz.png)
 
