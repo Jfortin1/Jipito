@@ -1,12 +1,12 @@
 # Kolmogorov-Zurbenko filter (iterative moving average)
-kz <- function(x, k=1, iter=1, na.rm=TRUE, optimal=FALSE){
+kz <- function(x, k=1, iter=1, na.rm=TRUE, optimal=FALSE, tolerance=0.05){
+
     check.integer <- function(N){
         !grepl("[^[:digit:]]", format(N,  digits = 20, scientific = FALSE))
     }
     if (!check.integer(k) | k<=0 | (k %% 2)==0){
         stop("k must be a strictly positive odd integer")
     }
-
     stopifnot(is.numeric(x))
 
     k <- (k-1)/2
@@ -40,6 +40,7 @@ kz <- function(x, k=1, iter=1, na.rm=TRUE, optimal=FALSE){
         } 
         x
     }
+
 
     .optimalMovingAverage <- function(x, k, na.rm=TRUE){
     
