@@ -43,8 +43,20 @@ kz <- function(x, k=1, iter=1, na.rm=TRUE, optimal=FALSE, tolerance=0.05){
 
 
     .optimalMovingAverage <- function(x, k, na.rm=TRUE){
-    
-        
+        continue <- TRUE
+        iter <- 0
+        xs <- list()
+        xs[[1]] <- x
+        while (continue){
+            iter <- iter+1
+            xs[[iter+1]] <- .movingAverage(xs[[iter]], k=k, na.rm = na.rm)
+            diff <- sum((xs[[iter+1]]-xs[iter])^2)/sum(xs[[iter]]^2)
+            if (diff < tolerance){
+                continue  <- FALSE
+            }
+        }
+        cat(paste0("Optimal number of iterations: ", iter-1, "\n"))
+        return(xs[[iter]])
     }
 
 
