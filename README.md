@@ -6,5 +6,5 @@ Because I want to version control useful pieces of code that hopefully others wi
 
 ### What
 
-* Kolmogorov-Zurbenko filter (Iterated moving average) (kz.R)[https://github.com/Jfortin1/Jipito/blob/master/R/kz.R]
+* Kolmogorov-Zurbenko filter (Iterated moving average) [kz.R](https://github.com/Jfortin1/Jipito/blob/master/R/kz.R)
 * 
