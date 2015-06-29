@@ -1,5 +1,5 @@
 # Kolmogorov-Zurbenko filter (iterative moving average)
-meanSmoother <- function(x, k=1, iter=1, na.rm=TRUE, optimal=FALSE){
+kz <- function(x, k=1, iter=1, na.rm=TRUE, optimal=FALSE){
     check.integer <- function(N){
         !grepl("[^[:digit:]]", format(N,  digits = 20, scientific = FALSE))
     }
