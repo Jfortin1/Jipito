@@ -4,6 +4,7 @@
 # k: number of iterations
 # optimal: should the optimal number of iterations be used?
 # tolerance: to control optimal number of iterations
+
 kz <- function(x, w=3, k=1, na.rm=TRUE, optimal=FALSE, tolerance=0.05, verbose=TRUE){
 
     check.integer <- function(N){
