@@ -11,7 +11,7 @@ I like this filter quite a lot and used it in my [recent paper](http://biorxiv.o
 
 * `k`: number of iterations (`k`). Should be based on prior information if possible
 * `w`: smoothing window width (odd integer number).
-* `optimal`: should the optimality criterion discussed below be used?
+* `optimal`: should the optimality criterion discussed below be used? If set to `TRUE`, then `k` does not need to be specified since it will be chosen optimally.
 
 In order to pick a reasonable number of iterations,  I implemented an intuitive optimality criterion. Basically, I want the iterative process to stop at `k` iterations when the difference between the (k+1)-th and the k-th smoothed vectors is less than a specified threshold. I quantify difference as the sums of squares of the difference vector, i.e. SS(x_(k+1)-x_k), divided by the sum of squares of the k-th vector, that is SS(x_k). If the difference is less than the parameter `tolerance`, set by default to 0.05, then the iterative process stops.  Below is an example of a vector before and after smoothing with an optimal number of iterations k=2.
 
