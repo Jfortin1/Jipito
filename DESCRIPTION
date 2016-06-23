@@ -1,6 +1,6 @@
 Package: Jipito
 Title: Awesome personal package
-Version: 0.99.1
+Version: 0.99.5
 Authors@R: c(person("Jean-Philippe", "Fortin", role = c("cre", "aut"),
                     email = "fortin946@gmail.com"))
 Depends: methods, matrixStats, R (>= 3.0.0)
