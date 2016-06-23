@@ -1,0 +1,3 @@
+getColorFrancis <- function(){
+    "firebrick"
+}
