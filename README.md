@@ -1,6 +1,13 @@
 # Jipito
 My personal R package
 
+##### Software status
+
+| Resource:      | Travis CI     |
+| -------------  |  ------------- |
+| Platform:      | Linux    |
+| R CMD check    | <a href="https://travis-ci.org/Jfortin1/Jipito"><img src="https://travis-ci.org/Jfortin1/Jipito.svg?branch=master" alt="Build status"></a> |
+
 ### Why
 Because I want to share pieces of code that are helpful to me. 
 
